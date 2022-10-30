@@ -1,0 +1,202 @@
+{
+	"info": {
+		"_postman_id": "ba183fba-3856-4701-b679-ea4d7bbfefa5",
+		"name": "Google Map",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23215150"
+	},
+	"item": [
+		{
+			"name": "G.MAP JSON",
+			"item": [
+				{
+					"name": "MAP",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Google map\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"const placeid = pm.response.json();\r",
+									"pm.environment.set(\"place_id\", placeid.place_id);\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n    \"location\":{\r\n\r\n        \"lat\" : -38.383494,\r\n\r\n        \"lng\" : 33.427362\r\n\r\n    },\r\n\r\n    \"accuracy\":50,\r\n\r\n    \"name\":\"Talakal home\",\r\n\r\n    \"phone_number\":\"(+91) 8792339238\",\r\n\r\n    \"address\" : \"17, dhanavantri colony\",\r\n\r\n    \"types\": [\"home park\",\"home\"],\r\n\r\n    \"website\" : \"http://google.com\",\r\n\r\n    \"language\" : \"kannada-IN\"\r\n\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl2}}/maps/api/place/add/json?key= qaclick123",
+							"host": [
+								"{{baseurl2}}"
+							],
+							"path": [
+								"maps",
+								"api",
+								"place",
+								"add",
+								"json"
+							],
+							"query": [
+								{
+									"key": "key",
+									"value": " qaclick123"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete map",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{    \"place_id\":{{place_id}} \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl2}}/maps/api/place/delete/json?key=qaclick123",
+							"host": [
+								"{{baseurl2}}"
+							],
+							"path": [
+								"maps",
+								"api",
+								"place",
+								"delete",
+								"json"
+							],
+							"query": [
+								{
+									"key": "key",
+									"value": "qaclick123"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "G.MAP XML",
+			"item": [
+				{
+					"name": "MAP",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\r\n<root>\r\n    <location>\r\n        <lat>-38.383494</lat>\r\n        <lng>33.427362</lng>\r\n    </location>\r\n    <accuracy>50</accuracy>\r\n    <name>The shoe store</name>\r\n    <phone_number>(+91) 983 893 3937</phone_number>\r\n    <address>near temple, karnataka </address>\r\n    <types>shoe park</types>\r\n    <types>kadai</types>\r\n    <website>http://google.com</website>\r\n    <language>kannada -IN</language>\r\n</root>\r\n",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://216.10.245.166/maps/api/place/add/xml?key= qaclick123",
+							"protocol": "http",
+							"host": [
+								"216",
+								"10",
+								"245",
+								"166"
+							],
+							"path": [
+								"maps",
+								"api",
+								"place",
+								"add",
+								"xml"
+							],
+							"query": [
+								{
+									"key": "key",
+									"value": " qaclick123"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete map",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\r\n<root>\r\n    <place_id>6ebc56e0f040a43ba6564e76cec75bc1</place_id>\r\n</root\r\n",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://216.10.245.166/maps/api/place/delete/xml?key=qaclick123",
+							"protocol": "http",
+							"host": [
+								"216",
+								"10",
+								"245",
+								"166"
+							],
+							"path": [
+								"maps",
+								"api",
+								"place",
+								"delete",
+								"xml"
+							],
+							"query": [
+								{
+									"key": "key",
+									"value": "qaclick123"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
